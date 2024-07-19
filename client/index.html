@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+
+    <main>
+        
+        <br><br>
+        <section id="add-item">
+            <h1>Add New Item</h1>
+            <form>
+                <label for="item-name">Item Name:</label>
+                <input type="text" id="item-name"required>
+                
+                <label for="item-category">Category:</label>
+                <input type="text" id="item-category" required>
+                
+                <label for="item-quantity">Quantity:</label>
+                <input type="number" id="item-quantity"required>
+                
+                <label for="action">Action:</label>
+                <p>
+                    <!-- <label for="dog-names">Choose a dog name:</label>
+                <select name="dog-names" id="dog-names">     
+                    <option value="rigatoni">Rigatoni</option>
+                    <option value="dave">Dave</option>
+                    <option value="pumpernickel">Pumpernickel</option>
+                    <option value="reeses">Reeses</option>
+                </select> -->
+                <input type="radio" id="item-action-buy" name="action" value="ADD" required>ADD
+                <input type="radio" id="item-action-sell" name = "action" value="REMOVE" required>REMOVE
+                <br><br>
+                </p>
+            </form>
+            <button id="add-btn" role="button">Submit</button>
+        </section>
+        <section>
+            <h1>Inventory</h1>
+            <table id="table">
+                <thead>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+            <button id="truncate-btn">Truncate Tables</button>
+        </section>
+        <section>
+            <h1>Action Log</h1>
+            <table id="log-table">
+                <thead>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                        <th>TimeStamp</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Inventory Management System</p>
+    </footer>
+    <script src="./index.js"></script>
+</body>
+</html>
