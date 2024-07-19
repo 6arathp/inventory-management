@@ -1,10 +1,10 @@
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch("http://localhost:5000/getItems")
+    fetch("/getItems")
         .then(res => res.json())
         .then(data => loadTable(data))
-    fetch("http://localhost:5000/getLog")
+    fetch("/getLog")
         .then(res => res.json())
         .then(data => loadLog(data))
     
@@ -108,7 +108,7 @@ addBtn.onclick = async function () {
     itemCategory = document.querySelector("#item-category").value
     itemQuantity = document.querySelector("#item-quantity").value
     itemAction = document.querySelector('input[name="action"]:checked').value
-    response = await fetch("http://localhost:5000/update", {
+    response = await fetch("/update", {
         method: "POST",
         body: JSON.stringify({
             name: itemName,
@@ -121,15 +121,15 @@ addBtn.onclick = async function () {
             "Content-type": "application/json; charset=UTF-8"
         }
     })
-    // await fetch("http://localhost:5000/getTableRow")
+    // await fetch("/getTableRow")
     // .then(res => res.json())
     // .then(data => insertTableRow([data]))
     if (response.status == 201) {
-        await fetch("http://localhost:5000/getItems")
+        await fetch("/getItems")
             .then(res => res.json())
             .then(data => loadTable(data))
 
-        await fetch("http://localhost:5000/getLogRow")
+        await fetch("/getLogRow")
             .then(res => res.json())
             .then(data => {
                 const table = document.querySelector('#log-table tbody');
@@ -142,13 +142,13 @@ addBtn.onclick = async function () {
 
 const truncateBtn = document.querySelector("#truncate-btn")
 truncateBtn.onclick = async function () {
-    response = await fetch("http://localhost:5000/truncateAll")
+    response = await fetch("/truncateAll")
     if (response.status == 201) {
-        await fetch("http://localhost:5000/getItems")
+        await fetch("/getItems")
             .then(res => res.json())
             .then(data => loadTable(data))
 
-        await fetch("http://localhost:5000/getLog")
+        await fetch("/getLog")
             .then(res => res.json())
             .then(data => loadLog(data))
     }
