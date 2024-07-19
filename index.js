@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector("#item-name").value = ""
         document.querySelector("#item-category").value = ""
         document.querySelector("#item-quantity").value = ""
-        document.querySelector('input[name="action"]:checked').value = ""
 })
 
 function loadTable (data) {
