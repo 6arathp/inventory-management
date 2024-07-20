@@ -22,8 +22,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('/', async (req, res) => {
-    res.sendFile('public/index.html', {root: path.join(__dirname, 'public')})
+app.get('/', (req, res) => {
+    res.sendFile('public/index.html', { root: path.join(__dirname, 'public') })
+    
 })
 
 app.get('/getLog', async (req, res) => {
