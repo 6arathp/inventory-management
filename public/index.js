@@ -1,17 +1,28 @@
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    fetch("/getItems")
+document.addEventListener('DOMContentLoaded', async function () {
+    showSpinner()
+    await fetch("/getItems")
         .then(res => res.json())
         .then(data => loadTable(data))
-    fetch("/getLog")
+    await fetch("/getLog")
         .then(res => res.json())
         .then(data => loadLog(data))
     
         document.querySelector("#item-name").value = ""
         document.querySelector("#item-category").value = ""
         document.querySelector("#item-quantity").value = ""
+    hideSpinner ()
 })
+
+function showSpinner() {
+    document.querySelector("#spinner-div").style.display = "flex"
+}
+
+function hideSpinner () {
+    document.querySelector("#spinner-div").style.display = "none"
+    document.querySelector("#overlay").style.display = "none"
+    
+}
+
 
 function loadTable (data) {
     const table = document.querySelector('#table tbody')
@@ -104,6 +115,7 @@ function updateTable (data) {
 
 const addBtn = document.querySelector("#add-btn")
 addBtn.onclick = async function () {
+    showSpinner()
     itemName = document.querySelector("#item-name").value
     itemCategory = document.querySelector("#item-category").value
     itemQuantity = document.querySelector("#item-quantity").value
@@ -137,11 +149,15 @@ addBtn.onclick = async function () {
                     table.innerHTML = ""
                 insertLogRow([data])
             })
+    } else if (response.status == 365) {
+        alert("Cannot Remove: Item does not exist")
     }
+    hideSpinner()
 }
 
 const truncateBtn = document.querySelector("#truncate-btn")
 truncateBtn.onclick = async function () {
+    showSpinner()
     response = await fetch("/truncateAll")
     if (response.status == 201) {
         await fetch("/getItems")
@@ -152,6 +168,7 @@ truncateBtn.onclick = async function () {
             .then(res => res.json())
             .then(data => loadLog(data))
     }
+    hideSpinner()
 }
 
 
