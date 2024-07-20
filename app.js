@@ -59,4 +59,4 @@ app.post('/update', async (req, res) => {
     else
         res.status(365).send(result)
 })
-app.listen(process.env.PORT, console.log(`Server listening on port ${process.env.PORT}`))
+app.listen(process.env.PORT)
