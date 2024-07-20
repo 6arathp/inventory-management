@@ -1,12 +1,15 @@
 import express from "express"
 const app = express()
+import * as path from 'path'
+const __dirname = path.resolve()
+
 
 import dotenv from "dotenv"
 dotenv.config()
 import cors from "cors"
 import * as db from './db.js'
 
-app.use(express.static("public"))
+app.use(express.static(path.join(__dirname, "public")))
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -19,6 +22,9 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.get('/', async (req, res) => {
+    res.sendFile('public/index.html', {root: path.join(__dirname, 'public')})
+})
 
 app.get('/getLog', async (req, res) => {
     const result = await db.getLog()
