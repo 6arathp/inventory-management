@@ -117,23 +117,28 @@ const addBtn = document.querySelector("#add-btn")
 addBtn.onclick = async function () {
     
     itemName = document.querySelector("#item-name").value
-    itemCategory = document.querySelector("#item-category").value
-    itemQuantity = document.querySelector("#item-quantity").value
-    itemAction = document.querySelector('input[name="action"]:checked').value
-    
     if (itemName == null || itemName == '') {
         alert(`Please Enter Name`)
         return
-    } else if (itemCategory == null || itemCategory == '') {
+    }
+    itemCategory = document.querySelector("#item-category").value
+    if (itemCategory == null || itemCategory == '') {
         alert(`Please Enter Category`)
         return
-    } else if (itemQuantity == null || itemQuantity == '') {
+    }
+    itemQuantity = document.querySelector("#item-quantity").value
+    if (itemQuantity == null || itemQuantity == '') {
         alert(`Please enter Quantity`)
         return
-    } else if (itemAction == null || itemAction == '') {
-        alert(`Please choose ADD/REMOVE`)
+    }
+    if (!document.querySelector('input[name="action"]:checked'))
+    {
+        alert("Please choose ADD/REMOVE operation")
         return
     }
+    itemAction = document.querySelector('input[name="action"]:checked').value
+    
+
     
     showSpinner()
     response = await fetch("/update", {
