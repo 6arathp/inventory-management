@@ -15,12 +15,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 function showSpinner() {
     document.querySelector("#spinner-div").style.display = "flex"
+    document.querySelector("#spinner-img").style.display = "block"
 }
 
 function hideSpinner () {
     document.querySelector("#spinner-div").style.display = "none"
-    document.querySelector("#overlay").style.display = "none"
-    
+    document.querySelector("#spinner-img").style.display = "none"
 }
 
 
