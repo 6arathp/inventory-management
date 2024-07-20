@@ -10,13 +10,8 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
     port: process.env.MYSQL_PORT
 }).promise()
-
-// pool.connect((err) => {
-//     if (err)
-//         console.log(err.message);
-//     console.log("db is connected");
-// })
-
+    
+;
 // export async function getTableRow () {
 //     const [[id]] = await pool.query(`select * from current_stock order by id desc limit 1`)
 //     const [result] = await pool.query(`

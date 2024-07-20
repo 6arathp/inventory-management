@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     await fetch("/getLog")
         .then(res => res.json())
         .then(data => loadLog(data))
-    
+
         document.querySelector("#item-name").value = ""
         document.querySelector("#item-category").value = ""
         document.querySelector("#item-quantity").value = ""
@@ -115,11 +115,27 @@ function updateTable (data) {
 
 const addBtn = document.querySelector("#add-btn")
 addBtn.onclick = async function () {
-    showSpinner()
+    
     itemName = document.querySelector("#item-name").value
     itemCategory = document.querySelector("#item-category").value
     itemQuantity = document.querySelector("#item-quantity").value
     itemAction = document.querySelector('input[name="action"]:checked').value
+    
+    if (itemName == null || itemName == '') {
+        alert(`Please Enter Name`)
+        return
+    } else if (itemCategory == null || itemCategory == '') {
+        alert(`Please Enter Category`)
+        return
+    } else if (itemQuantity == null || itemQuantity == '') {
+        alert(`Please enter Quantity`)
+        return
+    } else if (itemAction == null || itemAction == '') {
+        alert(`Please choose ADD/REMOVE`)
+        return
+    }
+    
+    showSpinner()
     response = await fetch("/update", {
         method: "POST",
         body: JSON.stringify({
